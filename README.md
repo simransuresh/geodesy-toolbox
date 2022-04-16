@@ -5,7 +5,7 @@ A complete handy toolbox for geodesy in Python
 # Foundations: 
 1. Coordinate transformations: cart2sph, sph2cart, cart2ellip, ellip2cart 
 2. Earth constants, Datum/RF specifications - wgs84 datum a,f, grs80 ellipsoid constants 
-3. Time systems: date2mjd, mjd2date, doy, gpst, sidereal day, year, essential constants 
+3. Time systems: jd2mjd, mjd2jd, date2mjd, mjd2date, percent of year
 
 # Earth Rotations: (PILLAR 1) 
 4. ITRF-ICRF, ICRF-ITRF transformation - EOP 
