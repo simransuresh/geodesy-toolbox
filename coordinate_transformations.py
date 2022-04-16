@@ -116,4 +116,29 @@ class CoordTf:
         return x, y, z
 
 
-# TODO: ECEF to ENU, ENU to ECEF
+    # TODO: test again!!
+    def geodetic2enu(self, lat, lon, h):
+        """
+        SRC: https://gssc.esa.int/navipedia/index.php/Transformations_between_ECEF_and_ENU_coordinates
+        transformation of Earth centered earth fixed frame to Easting Northing Up coordinates
+        lat, lon, h: geodetic coordinates
+        returns E,N,U
+        """
+        # convert geodetic coordinates to cartesian ECEF
+        x, y, z = self.ellip2cart(lat, lon, h)
+
+        # center is not given, consider greenwich meridien
+        center = np.array([51.4780, 0.0015, 0])
+        dcenter = (np.array([x, y, z]).T - center).T
+
+        # EQN:6 R1(pi/2 - lat)*R3(pi/2 + lon)
+        rot_mat = np.array([
+            [-np.sin(lon), np.cos(lon), 0],
+            [-np.cos(lon)*np.sin(lat), -np.sin(lon)*np.sin(lat), np.cos(lat)],
+            [np.cos(lon)*np.cos(lat), np.sin(lon)*np.cos(lat), np.sin(lat)]
+        ])
+
+        # ENU coordinates
+        E, N, U = rot_mat @ dcenter
+
+        return E, N, U
