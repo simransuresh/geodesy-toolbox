@@ -4,6 +4,7 @@
 # Author: Simran Suresh
 # Date: 15.04.2022
 
+
 class Constants:
     def __init__(self):
         # SRC: from Wiki

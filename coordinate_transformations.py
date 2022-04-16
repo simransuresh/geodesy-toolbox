@@ -4,6 +4,8 @@
 # Author: Simran Suresh
 # Date: 15.04.2022
 
+# TODO: geodetic2enu test again, add more transformations if necessary
+
 import numpy as np
 from constants import WGS84, GRS80, Constants
 
@@ -116,7 +118,6 @@ class CoordTf:
         return x, y, z
 
 
-    # TODO: test again!!
     def geodetic2enu(self, lat, lon, h):
         """
         SRC: https://gssc.esa.int/navipedia/index.php/Transformations_between_ECEF_and_ENU_coordinates
@@ -142,3 +143,4 @@ class CoordTf:
         E, N, U = rot_mat @ dcenter
 
         return E, N, U
+        
